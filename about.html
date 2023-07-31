@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>About Us</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="navbar.css">
+  <style>
+  /* Blog content styles */
+  .blog {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      grid-gap: 20px;
+      padding-left: 20%;
+      padding-right: 20%;
+      padding-top: 5%;
+
+      text-align: left;
+    }
+
+    .blog > * {
+      grid-column: 2;
+    }
+
+    .blog h1,h2 {
+      margin-bottom: 10px;
+      color: #1662a1;
+    }
+
+    .blog p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .blog ol li {
+      line-height: 1.5;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .blog {
+        grid-template-columns: 1fr;
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">SCANIA</div>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar" id="navi">
+          <ul>
+            <li>
+              <a href="index1.php">Home</a>
+            </li>
+            <li>
+              <a href="health.html">Health</a>
+            </li>
+            <li>
+              <a href="about.html" class="active">About</a>
+            </li>
+            <li>
+              <a href="contact.html">Contact</a>
+            </li>
+            <li>
+              <a href="signout.php">Signout</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    <div class="blog">
+      <h1>About Pneumonia Detection Web App</h1>
+        <p>
+          Welcome to our Pneumonia Detection Web App! Our web application is designed to assist medical professionals in the diagnosis of pneumonia using chest X-ray images. By leveraging state-of-the-art Machine Learning techniques, we can automatically analyze X-ray images and provide predictions regarding the presence or absence of pneumonia.
+        </p>
+        <h2>How It Works</h2>
+        <ol>
+            <li>
+                <strong>Upload:</strong> To get started, navigate to the "Upload" page on our website. Here, you can select a chest X-ray image from your device that you want to analyze for pneumonia.
+            </li>
+            <li>
+                <strong>Image Processing:</strong> Once you upload the X-ray image, our web app processes it by applying various image enhancement techniques to improve the quality and highlight important features.
+            </li>
+            <li>
+                <strong>Deep Learning Model:</strong> The pre-trained ResNet-50 model, which is based on Convolutional Neural Networks (CNN), is then used to analyze the processed X-ray image. The model has been trained on a large dataset of labeled chest X-ray images, enabling it to learn complex patterns and features associated with pneumonia.
+            </li>
+            <li>
+                <strong>Prediction:</strong> The model provides a prediction indicating whether pneumonia is present or absent in the uploaded X-ray image. The prediction is displayed on the results page, along with a confidence score.
+            </li>
+        </ol>
+        <h2>Disclaimer</h2>
+        <p>
+            It is important to note that the predictions provided by our web app are not intended to replace professional medical advice or diagnosis. They should be used as an additional tool to assist medical professionals in their decision-making process. Always consult a qualified healthcare provider for accurate diagnosis and treatment recommendations.
+        </p>
+        <h2>Privacy and Security</h2>
+        <p>
+          At Pneumonia Detection Web App, we take your privacy and security seriously. We ensure that all patient details and results are stored securely and confidentially in our system. However, we do not store any X-ray images uploaded for analysis. We have implemented stringent measures to ensure the utmost security of patient information, employing advanced encryption and access control mechanisms. The confidentiality and integrity of patient data are of paramount importance to us.
+        </p>
+    </div>
+  </div>
+  <div class="footer">
+    <p>&copy; 2023 Scania - Pneumonia Detection</p>
+  </div>
+
+  <script>
+    // JavaScript for automatic carousel sliding
+    let carousel = document.querySelector('.carousel');
+    let carouselInner = carousel.querySelector('.carousel-inner');
+    let images = Array.from(carouselInner.querySelectorAll('.carousel-img'));
+    let currentImageIndex = 0;
+    let prevButton = document.querySelector('.prev-button');
+    let nextButton = document.querySelector('.next-button');
+    let slideInterval;
+
+    function showImage(index) {
+      carouselInner.style.transform = `translateX(-${index * 33.33}%)`;
+    }
+
+    function prevImage() {
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+      showImage(currentImageIndex);
+    }
+
+    function nextImage() {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      showImage(currentImageIndex);
+    }
+
+    function startSlide() {
+      slideInterval = setInterval(nextImage, 5000);
+    }
+
+    function stopSlide() {
+      clearInterval(slideInterval);
+    }
+
+    prevButton.addEventListener('click', () => {
+      prevImage();
+      stopSlide();
+      startSlide();
+    });
+    nextButton.addEventListener('click', () => {
+      nextImage();
+      stopSlide();
+      startSlide();
+    });
+
+    startSlide(); // Start automatic sliding
+
+    showImage(currentImageIndex); // Show initial image
+  </script>
+  <script>
+    hamburger = document.querySelector(".hamburger");
+    hamburger.onclick = function() {
+      navBar = document.querySelector(".nav-bar");
+      navBar.classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
